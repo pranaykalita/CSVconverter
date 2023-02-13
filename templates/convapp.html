@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV converter</title>
+    {% load static %}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static  'appstyle.css'%}">
+</head>
+<body>
+    <container class="container-fluid vh-100 p-4 m-4">
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+          <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                <div class="card" style="border-radius: 15px;">
+                  <div class="card-body p-5">
+                    <h2 class="text-uppercase text-center mb-5">CSV TO EXCEL CONVERTER</h2>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input class="form-inline p-3" type="file" name="filefield" accept=".csv" placeholder="no file selected" multiple required/>
+                        <div class="p-3">
+                            <label for="outputtype">Choose output format</label>
+                            <select class="custom-select" name="outputformat">
+                                <option value="xls" selected>XLS</option>
+                                <option value="xlsx">XLSX</option>
+                              </select>  
+                        </div>
+                        
+                        <input type="submit" class="btn btn-primary shdaow rounded m-3" value="Download" name="processbtn" />
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </container>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
