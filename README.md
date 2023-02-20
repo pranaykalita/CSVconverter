@@ -17,6 +17,8 @@ python manage.py runserver
 
 ![image info](static/UI.png)
 
+![CSV converter](static/CSV%20converter.gif)
+
 - xls support
 - xlsx support
 - clear file history
