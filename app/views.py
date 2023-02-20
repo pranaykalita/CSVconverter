@@ -4,7 +4,7 @@ from .models import UploadHistory
 import pandas as pd
 from openpyxl import Workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
-import time
+
 
 # Create your views here.
 def conv_app(request):
