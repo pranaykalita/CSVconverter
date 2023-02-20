@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSV converter</title>
+  <!-- ========== Start script Section ========== -->
+  {% load static %}
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap4.min.css" />
+  <link rel="stylesheet" href="{% static  'appstyle.css'%}">
+
+  <!-- ========== End Section ========== -->
+
+</head>
+
+<body>
+
+  <!-- ========== Start embed Section ========== -->
+
+  {% block content %}
+  {% endblock content %}
+
+  <!-- ========== End Section ========== -->
+
+  <!-- ========== Start script Section ========== -->
+  
+  <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('#datatable').DataTable(
+        {
+          bFilter: false, bInfo: false
+        }
+      );
+    });
+    $.fn.dataTable.ext.errMode = 'none';
+  </script>
+  <!-- ========== End Section ========== -->
+
+</body>
+
+</html>
