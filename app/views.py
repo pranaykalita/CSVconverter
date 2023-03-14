@@ -4,24 +4,25 @@ from .models import UploadHistory
 import pandas as pd
 from openpyxl import Workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
-
+from django.conf import settings
+from django.template.response import TemplateResponse
 
 # Create your views here.
 def conv_app(request):
-
     upload_history = UploadHistory.objects.all().values()
     context = {'upload_history': upload_history}
-
+    
     if request.method == 'POST':
 
         csv_file = request.FILES['filefield']
         out_format = request.POST.get('outputformat')
-        filename = csv_file.name[:-4]
+        # filename = csv_file.name[:-4]
+        filename = str(csv_file.name).split(".")[0]
 
         # to store file type
-        if out_format == '1':
+        if out_format == settings.XLS_FORMAT:
             type = "xls"
-        elif out_format == '2':
+        elif out_format == settings.XLSX_FORMAT:
             type = "xlsx"
 
         UploadHistory.objects.create(file_name=filename,converted_type=type)
@@ -30,7 +31,7 @@ def conv_app(request):
 
             df = pd.read_csv(csv_file)
         
-            # xls
+            # xlsX
             if out_format == '1':
                 # openpyxl set workbook and activate it
                 wb = Workbook()
@@ -46,7 +47,7 @@ def conv_app(request):
                 
                 return response
             
-            # xlsx
+            # xls
             elif out_format == '2':
                  # openpyxl set workbook and activate it
                 wb = Workbook()
@@ -59,8 +60,15 @@ def conv_app(request):
                 # to download
                 response = HttpResponse(content_type='application/ms-excel')
                 response['Content-Disposition'] = f'attachment; filename={filename}_converted.xls'
+                # upload_history = UploadHistory.objects.all().values()
+                # context = {'upload_history': upload_history}
 
-                return response
+                # response = TemplateResponse(request, 'app_converter.html', context)
+
+                # return render(request , 'app_converter.html', context)
+                return response    
+
+
             
         except Exception as e:
             print(e)
